@@ -6,6 +6,9 @@ API Rest para gerenciar livros de um usuário.
 - GoLang
 - MongoDB
 
+## MONGODB
+Optei pelo MongoDB devido à sua flexibilidade e simplicidade na configuração. Como um banco de dados NoSQL, ele permite uma estrutura de dados mais livre, facilitando a adição de novos campos ou ajustes nos dados sem grandes mudanças no esquema. Esse comportamento é ideal para o desenvolvimento ágil e rápido. Além disso, o MongoDB é altamente eficiente em lidar com grandes volumes de dados e já tenho experiência com ele, o que acelera o processo de implementação e garante uma solução mais robusta para o gerenciamento dos livros.
+
 ## Endpoints
 
 ### POST /books
