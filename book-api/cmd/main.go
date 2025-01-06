@@ -12,5 +12,6 @@ func main() {
 	repository.InitMongoDB()
 	r := gin.Default()
 	r.GET("/books", handlers.GetBooks)
+	r.POST("/books", handlers.CreateBook)
 	r.Run(":8080")
 }

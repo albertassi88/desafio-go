@@ -4,6 +4,7 @@ import (
 	"book-api/internal/models"
 	"context"
 	"log"
+	"os"
 
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
@@ -14,7 +15,13 @@ var client *mongo.Client
 var collection *mongo.Collection
 
 func InitMongoDB() {
-	clientOptions := options.Client().ApplyURI("mongodb://localhost:27017")
+	mongoURI := os.Getenv("MONGO_URI")
+	if mongoURI == "" {
+		log.Fatal("MONGO_URI não está definida!")
+	}
+
+	clientOptions := options.Client().ApplyURI(mongoURI)
+
 	var err error
 	client, err = mongo.Connect(context.TODO(), clientOptions)
 	if err != nil {
