@@ -31,7 +31,7 @@ func InitMongoDB() {
 
 	clientOptions := options.Client().ApplyURI(mongoURI)
 
-	client, err = mongo.Connect(context.TODO(), clientOptions) // Reutilizando a variável err
+	client, err = mongo.Connect(context.TODO(), clientOptions)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -77,4 +77,28 @@ func CreateBook(book models.Book) (interface{}, error) {
 		return nil, err
 	}
 	return result.InsertedID, nil
+}
+
+func UpdateBook(id string, book models.Book) (int64, error) {
+	fmt.Println("Updating book with ID:", id)
+	objectID, err := primitive.ObjectIDFromHex(id)
+	if err != nil {
+		return 0, err
+	}
+
+	update := bson.M{
+		"$set": bson.M{
+			"title":    book.Title,
+			"category": book.Category,
+			"author":   book.Author,
+			"synopsis": book.Synopsis,
+		},
+	}
+
+	res, err := collection.UpdateOne(context.TODO(), bson.M{"_id": objectID}, update)
+	if err != nil {
+		return 0, err
+	}
+
+	return res.ModifiedCount, nil
 }
