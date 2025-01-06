@@ -14,5 +14,6 @@ func main() {
 	r.GET("/books/:id", handlers.GetBook)
 	r.POST("/books", handlers.CreateBook)
 	r.PUT("/books/:id", handlers.UpdateBook)
+	r.DELETE("/books/:id", handlers.DeleteBook)
 	r.Run(":8080")
 }

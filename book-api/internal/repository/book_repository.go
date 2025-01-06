@@ -95,10 +95,23 @@ func UpdateBook(id string, book models.Book) (int64, error) {
 		},
 	}
 
-	res, err := collection.UpdateOne(context.TODO(), bson.M{"_id": objectID}, update)
+	result, err := collection.UpdateOne(context.TODO(), bson.M{"_id": objectID}, update)
 	if err != nil {
 		return 0, err
 	}
 
-	return res.ModifiedCount, nil
+	return result.ModifiedCount, nil
+}
+
+func DeleteBook(id string) (int64, error) {
+	objectID, err := primitive.ObjectIDFromHex(id)
+	if err != nil {
+		return 0, err
+	}
+
+	result, err := collection.DeleteOne(context.TODO(), bson.M{"_id": objectID})
+	if err != nil {
+		return 0, err
+	}
+	return result.DeletedCount, nil
 }

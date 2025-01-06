@@ -58,3 +58,13 @@ func UpdateBook(c *gin.Context) {
 	}
 	c.JSON(http.StatusOK, gin.H{"message": "Book updated successfully"})
 }
+
+func DeleteBook(c *gin.Context) {
+	id := c.Param("id")
+	deletedCount, err := repository.DeleteBook(id)
+	if err != nil || deletedCount == 0 {
+		c.JSON(http.StatusNotFound, gin.H{"error": "Book not found or deletion failed"})
+		return
+	}
+	c.JSON(http.StatusOK, gin.H{"message": "Book deleted successfully"})
+}
