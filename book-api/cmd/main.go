@@ -8,10 +8,10 @@ import (
 )
 
 func main() {
-	// Conectar ao MongoDB
 	repository.InitMongoDB()
 	r := gin.Default()
 	r.GET("/books", handlers.GetBooks)
+	r.GET("/books/:id", handlers.GetBook)
 	r.POST("/books", handlers.CreateBook)
 	r.Run(":8080")
 }

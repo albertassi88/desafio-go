@@ -10,11 +10,23 @@ import (
 
 func GetBooks(c *gin.Context) {
 	books, err := repository.GetBooks()
+
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 		return
 	}
 	c.JSON(http.StatusOK, books)
+}
+
+func GetBook(c *gin.Context) {
+	id := c.Param("id")
+
+	book, err := repository.GetBookByID(id)
+	if err != nil {
+		c.JSON(http.StatusNotFound, gin.H{"error": "Book not found"})
+		return
+	}
+	c.JSON(http.StatusOK, book)
 }
 
 func CreateBook(c *gin.Context) {
