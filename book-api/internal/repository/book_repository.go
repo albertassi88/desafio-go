@@ -40,3 +40,11 @@ func GetBooks() ([]models.Book, error) {
 	}
 	return books, nil
 }
+
+func CreateBook(book models.Book) (interface{}, error) {
+	result, err := collection.InsertOne(context.TODO(), book)
+	if err != nil {
+		return nil, err
+	}
+	return result.InsertedID, nil
+}
