@@ -64,7 +64,6 @@ http://localhost:8080/books. Faça um GET para obter todos os livros,
 http://localhost:8080/books/<id>. Faça um GET para buscar um livro pelo ID
 http://localhost:8080/books, Faça um POST para criar um livro
 
-
 ### Observações
 Se você não possui uma conta no MongoDB Atlas, você pode criar uma gratuitamente em https://www.mongodb.com/cloud/atlas.
 Certifique-se de que o banco de dados e a coleção estejam configurados corretamente no MongoDB Atlas antes de rodar a aplicação.
